@@ -1,0 +1,113 @@
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+}
+:root {
+    --ff-primary: "Roboto", sans-serif;
+    --green: #596d48;
+    --light-border:  #E5E7EB;
+
+}
+html {
+    min-height: 100%; /* Look, it's not fixed anymore! */
+    font-family: var(--ff-primary);
+
+    display: flex;
+    flex-direction: column;
+}
+body,
+h1,
+h2,
+h3,
+p {
+    margin: 0; /* reset, much needed, KEEP NEAR TOP */
+}
+body {
+    flex-grow: 1;
+    display: flex;
+}
+
+.caption {
+    font-size: 18px;
+    color: white;
+}
+.content {
+    font-size: 1.5rem;
+    font-weight: 600;
+}
+button {
+    background-color: var(--green);
+    border-radius: 10%;
+    color: white;
+}
+a{
+  color: #596d48;  
+}
+p {
+    width: clamp(45ch, 50%, 75ch);
+}
+.left {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    background-image: url("leftimage.png");
+}
+.caption {
+    opacity: .6;
+}
+
+.logoDiv {
+    margin-top: 10rem;
+    background-color: rgba(0, 0, 0, .5);
+    display: flex;
+    justify-content: center;
+}
+.logoDiv img {
+    max-width: 30% /* 30% of the width of the PARENT */
+}
+.right {
+    background-color: var(--light-border);
+ display: flex;
+ flex-direction: column;
+}
+.one {
+    margin-top: 200px;
+}
+.two {
+    margin-top: 20px;
+}
+.content {
+    margin-left: 40px;
+}
+label,input{
+    font: inherit;
+    display:flex;
+    flex-direction:column;
+    flex-wrap: wrap;
+
+  }
+  fieldset {
+ 
+    padding: 0px;
+    margin-top: 10px;
+    margin-left: 40px;
+    margin-right: 60px;
+    margin-bottom: 40px;
+    border: none;
+  }
+.formContainer {
+    
+    display: flex;
+}
+.titleContainer {
+    padding-top: 10px;
+    margin-top: 100px;
+    background-color: white;
+    display: flex;
+    flex-direction: column;
+}
+.titleContainer p {
+    font-size: 1.5rem;
+    margin-left:40px
+}
