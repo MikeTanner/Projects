@@ -7,6 +7,7 @@
     --ff-primary: "Roboto", sans-serif;
     --green: #596d48;
     --light-border:  #E5E7EB;
+    --light-blue-border: #ADD8E6;
 
 }
 html {
@@ -40,6 +41,11 @@ button {
     background-color: var(--green);
     border-radius: 10%;
     color: white;
+    cursor: pointer;
+    font-size: 1.3rem;
+}
+button:hover {
+    background-color: lightgreen;
 }
 a{
   color: #596d48;  
@@ -74,10 +80,10 @@ p {
 .one {
     margin-top: 200px;
 }
-.two {
+.two, button, .account {
     margin-top: 20px;
 }
-.content {
+.content, Button, .account  {
     margin-left: 40px;
 }
 label,input{
@@ -85,6 +91,10 @@ label,input{
     display:flex;
     flex-direction:column;
     flex-wrap: wrap;
+    letter-spacing: 2px;
+    opacity: .7;
+    margin: 5px 0px;
+    border-color: grey;
 
   }
   fieldset {
@@ -111,3 +121,13 @@ label,input{
     font-size: 1.5rem;
     margin-left:40px
 }
+input {
+    border-color: var(--light-blue-border);
+}
+input:focus:invalid {
+    box-shadow: none;
+  }
+
+:invalid {
+    border-color: #900;
+  }
