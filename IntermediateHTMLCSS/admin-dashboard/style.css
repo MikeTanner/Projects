@@ -20,9 +20,10 @@ p {
 
 
 button {
+    box-shadow: inset 0 3px 4px rgba(0,0,0,0.16), 0 4px 4px rgba(0,0,0,0.45);
     height: 30px;
     width: 80px;
-    align-self:flex-end;
+    align-self:center;
     border: none;
     background-color: aqua;
     color: white;
@@ -31,24 +32,39 @@ button {
 .container {
     height: 100vh;
     display: grid;
-    grid-template-columns: 1fr 3fr 1fr;
-    grid-template-rows: 150px auto auto auto auto;
-}
+    grid-template-columns: 223px 3fr 1fr;
+/*     grid-template-rows: 150px, 50px, auto, auto;
+ */}
 .container >* {
     padding-left: 20px;
 }
 .dashboard {
     grid-row: 1/5;
     background-color: aqua;
+    box-shadow: inset 0 3px 6px rgba(0,0,0,0.16), 0 4px 6px rgba(0,0,0,0.45);
 }
 .yourProjects {
     padding-top: 15px;
     grid-row: 2/3;
-    grid-column: 2/4;
+    grid-column: 2/3;
     background-color: lightgray;
     font-weight: bold;
     font-size: 1.3rem;
-    align-self: baseline;
+    position: relative;
+/*     align-items: center;
+    justify-content: space-between; */
+}
+.yourProjects p, .announcementsTitle p {
+    position: absolute;
+    bottom: 0;
+}
+.announcementsTitle {
+    position: relative;
+    background-color: lightgray;
+    font-size: 1.3rem;
+    font-weight: bold;
+    grid-column: 3/4;
+    grid-row: 2/3;
 }
 .dashboard > * {
     display: flex;
@@ -58,9 +74,10 @@ button {
     margin-top: 15px;
 }
 .header {
+    box-shadow: inset 2px 3px 2px rgba(0,0,0,0.16), 4px 4px 4px rgba(0,0,0,0.45);
     background-color: antiquewhite;
     grid-column: 2/4;
-    gap: 25px;
+    gap: 5px;
     display: flex;
     justify-content: space-around;
     flex-direction: column;
@@ -103,25 +120,40 @@ button {
     background-color: lightgray
 }
 .projects {
+    padding-top: 10px;
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    grid-template-rows: max-content;
     gap: 15px;
     grid-column: 2/3;
-    grid-row: 2/4;
+    grid-row: 3/5;
 }
 .card {
+    height: 200px;
+    box-shadow: inset 0 3px 6px rgba(0,0,0,0.16), 0 4px 6px rgba(0,0,0,0.45);
+    border-radius: 10px;
     background-color: white;
     padding: 5px;
     border-radius: 10px;
 }
 
 .annoucements {
+    padding-top: 10px;
     grid-column: 3/4;
+}
+.annCard {
+    box-shadow: inset 0 3px 6px rgba(0,0,0,0.16), 0 4px 6px rgba(0,0,0,0.35);
+    border-radius: 10px;
+    background-color: white;
+    padding: 5px;
+    border-radius: 10px;
 }
 .trending {
     grid-column: 3/4;
 }
 input {
+    background-color: grey;
+    opacity: .7;
     border-radius: 10px;
     border: none;
     width: 100%;
