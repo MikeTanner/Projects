@@ -5,42 +5,81 @@
 p {
     margin-block: 0px
 }
-  html {
-    ;
-  }
 
+:root {
+    --light-text: white;
+    --blue-background: aqua;
+
+}
+
+.dashboard .title {
+    font-size: 2rem;
+    margin-bottom: 50px;
+    gap: 10px;
+}
+
+
+button {
+    height: 30px;
+    width: 80px;
+    align-self:flex-end;
+    border: none;
+    background-color: aqua;
+    color: white;
+    border-radius: 15px;
+}
 .container {
     height: 100vh;
     display: grid;
     grid-template-columns: 1fr 3fr 1fr;
 }
 .container >* {
-    padding-top: 15px;
     padding-left: 20px;
 }
 .dashboard {
-    grid-row: 1/4;
+    grid-row: 1/5;
     background-color: aqua;
+}
+.yourProjects {
+    padding-top: 15px;
+    grid-row: 2/3;
+    grid-column: 2/4;
+    background-color: lightgray;
+    font-weight: bold;
+    font-size: 1.3rem;
+    align-self: baseline;
+}
+.dashboard > * {
+    display: flex;
+    gap: 15px;
+    align-items: flex-end;
+    color: black;
+    margin-top: 15px;
 }
 .header {
     background-color: antiquewhite;
     grid-column: 2/4;
+    gap: 25px;
     display: flex;
+    justify-content: space-around;
     flex-direction: column;
 }
 .header,
 .annoucements {
     padding-right: 30px;
 }
+#bhcontainer {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+}
 
 .topHeader {
-    padding-left: 20px;
     display: grid;
-    grid-template-columns: 1fr 8fr 3fr 1fr 3fr;
+    grid-template-columns: .5fr 8fr 3fr 1fr 3fr;
     justify-items: center;
-    margin-inline: auto;
     align-items: center;
-    gap: 15px;
+    gap: 10px;
 }
 
 .topHeader h2 {
@@ -51,13 +90,30 @@ p {
     justify-self: right;
     width: 24px;
 }
+.greg {
+    justify-self: left;
+}
+.bottomHeader {
+    display: grid;
+    grid-template-columns: 1fr 8fr 1fr 1fr 1fr;
+    gap: 15px;
+}
 .main {
     background-color: lightgray
 }
 .projects {
-
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 15px;
     grid-column: 2/3;
+    grid-row: 2/4;
 }
+.card {
+    background-color: white;
+    padding: 5px;
+    border-radius: 10px;
+}
+
 .annoucements {
     grid-column: 3/4;
 }
@@ -74,4 +130,15 @@ input {
     max-width: 36px;
     height: auto;
     border-radius: 5px;
+}
+.bigPP {
+    max-width: 65px;
+    height: auto;
+    border-radius: 10px;
+}
+.wtf {
+    line-height: 28px;
+}
+.settings {
+    margin-top: 50px;
 }
