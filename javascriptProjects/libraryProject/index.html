@@ -11,9 +11,25 @@
 <body>
     <div class="container">
         <div class="addBookContainer">
-            <!-- top section will be a form +button to add new book -->
             <button class ="showButton">Show Form</button>
-            <p class="testHide" id = "test">Filler Text</p>
+            <form class="testHide" id="userInput">
+
+                <legend>Add a Book to the Library</legend>
+                <div class="formBox">
+                    <label for="inputTitle">Title: </label>
+                    <input type="text" id="inputTitle">
+                </div>
+                <div class="formBox">
+                    <label for="inputAuthor">Author: </label>
+                    <input type="text" id="inputAuthor">
+                </div>
+                <div class="formBox">
+                    <label for="inputDate">Date: </label>
+                    <input type="text" id="inputDate">
+                </div>
+                <button id="inputBtn">Add Book</button>
+            </form>
+            <!-- top section will be a form +button to add new book -->
         </div>
         <div class="displayContainer">
             <!-- rest of section will be a container displaying book cards -->

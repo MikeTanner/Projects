@@ -1,16 +1,16 @@
 const container = document.querySelector(".container")
 const displayContainer = document.querySelector(".displayContainer")
 const showBtn = document.querySelector(".showButton")
-const textText = document.querySelector("#test")
+const formsetContainer = document.querySelector("#userInput")
 
 showBtn.addEventListener("click", () => {
     console.log(this);
     if (showBtn.textContent =="Show Form") {
-        textText.classList.add("testShow");
+        formsetContainer.classList.add("testShow");
         showBtn.textContent = "Hide Form";
     }
     else {
-        textText.classList.remove("testShow");
+        formsetContainer.classList.remove("testShow");
         showBtn.textContent = "Show Form";
         
     }
