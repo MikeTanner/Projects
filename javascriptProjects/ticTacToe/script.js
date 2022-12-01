@@ -22,7 +22,9 @@ const gameBoard = (() => {
         gameBoard = [0,0,0,0,0,0,0,0,0];
     }
     const update = (tile, symbol) => {
-        //gameBoard[tile] = symbol
+        gameBoard[tile[1]] = symbol;
+        console.log(gameBoard);
+        
 
     }
     return {
@@ -37,20 +39,32 @@ const game = (() => {
     let turnCount = 0;
     const boardClick = (e) => {
         console.log(e.target.id);
-        
+        if (e.target.innerHTML == "") {
+            playTurn(e.target.id)
+        }
+        else {
+            e.stopPropagation();
+            return;
+        }
         //if event.target.innerhtml == ""
         //event.target.id
         //playTurn(event.target)
-
-
+        e.stopPropagation();
     }
     const reset = () => {
         displayController.initBoard();
         gameBoard.resetBoard()
         turnCount = 0
     }
-    const playTurn = (tile) => {
+    const playTurn = (tileID) => {
+        if (turnCount %2 == 0) {
+            player = x;
+        }
+        else {
+            player = o;
+        }
         turnCount += 1;
+        gameBoard.update(tileID, player.symbol)
                 //gameBoard.update(tile, Player.symbol?)
     }
     const isGameOver = () => {
