@@ -6,13 +6,23 @@
 //data flow idea
 //on click => Game.boardclick() => check if within container bounds => => request gameboard.property=> check if tile is full  => check for win or tie => if continue, gameboard.update([updatedArray])
 // =>  updates array =>gameboard calls displayController to update gameboard visual
-const Player = (symbol) => {
+const Player = (symbol, name) => {
     const displayName = () => {
         console.log(symbol);
     }
+    const changeName = (newName) => {
+        name = newName;
+    }
     return {
+        get name() {
+            return name;
+        },
+        set name(newName) {
+            changeName(newName);
+        },
         symbol,
-        displayName
+        displayName,
+        name
     }
 }
 
@@ -51,8 +61,12 @@ const game = (() => {
         //playTurn(event.target)
         e.stopPropagation();
     }
+    const start = () => {
+        reset();
+        buttonInit();
+    }
     const reset = () => {
-        displayController.initBoard();
+        displayController.reset();
         gameBoard.resetBoard()
         turnCount = 0
     }
@@ -63,22 +77,28 @@ const game = (() => {
         else {
             player = o;
         }
-        turnCount += 1;
         gameBoard.update(tileID, player.symbol)
-        console.log(gameBoard.getGameBoard());
         displayController.fillSquare(player.symbol, tileID)
-        if (turnCount > 4 ) {
+        if (turnCount > 3 ) {
             let didWin = checkWin(gameBoard.getGameBoard())
-            console.log(didWin);
             
             if (didWin) {
-                console.log("winner!");
-                
+                win(player);   
             }
-            if (!didWin && turnCount == 9) {
-                //tie game
+            if (!didWin && turnCount == 8) {
+                tie();
             }
         }
+        turnCount += 1;
+
+    }
+    const tie = () => {
+        displayController.tie();
+    }
+    const win = (player) => {
+
+        container.removeEventListener("click", handleEvent)
+        displayController.win(player)
     }
     const checkWin = (gameboard) => {
         //check horizontal win
@@ -97,19 +117,36 @@ const game = (() => {
         if ((gameboard[0] == gameboard[4] && gameboard[0] == gameboard[8]) || (gameboard[2] == gameboard[4] && gameboard[2] == gameboard[6])) {
             return true;
         }
+        return false;
+    }
+    const handleEvent = (event) => {
+        boardClick(event);
+    }
+    const buttonInit = () => {
+        const resetButton = document.querySelector(".resetButton")
+        const submitButton = document.querySelector(".submitName")
+        submitButton.addEventListener("click", (event) => {
+            event.preventDefault();
+            x.name = document.getElementById("playerOne").value;            
+            o.name = document.getElementById("playerTwo").value;
+
+        })
+        resetButton.addEventListener("click", reset)
     }
 
     return {
         turnCount,
         boardClick,
         reset,
+        handleEvent,
+        start
     }
 
 })()
 const displayController = (() => {
+    const msgContainer = document.querySelector(".messageContainer")
     const initBoard = () => {
-        const container = document.querySelector(".gameContainer")
-        container.addEventListener("click", (e => {game.boardClick(e)}))
+        container.addEventListener("click", game.handleEvent)
         container.innerHTML = "";
         for (let i = 0; i < 9; i++) {
             gameSquare = document.createElement("div");
@@ -118,21 +155,34 @@ const displayController = (() => {
            container.appendChild(gameSquare)
         }
     }
+    const reset = () => {
+        initBoard();
+        clearMessage();
+    }
+    const clearMessage = () => {
+        msgContainer.textContent = "";
+    }
+
     const fillSquare = (playerSymbol, tile) => {
         const container = document.querySelector(`#${tile}`)
         container.textContent = playerSymbol;
     }
-    const displayWin = (playerWinner) => {
-
+    const win = (player) => {
+        msgContainer.textContent = player.name + " has won the match!"
     }
-    const displayTie = () => {
-
+    const tie = () => {
+        msgContainer.textContent = "Tie Game!"
     }
     return {
-        initBoard,
-        fillSquare
+        reset,
+        fillSquare,
+        win,
+        tie,
     }
 })()
-game.reset();
-x = Player("x");
-o = Player("o");
+const container = document.querySelector(".gameContainer")
+x = Player("x", "greg");
+o = Player("o", "steve");
+game.start();
+
+
