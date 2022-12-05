@@ -23,12 +23,11 @@ const gameBoard = (() => {
     }
     const update = (tile, symbol) => {
         gameBoard[tile[1]] = symbol;
-        console.log(gameBoard);
-        
-
     }
     return {
-        gameBoard,
+        getGameBoard() {
+            return gameBoard
+        },
         resetBoard,
         update
     }
@@ -36,10 +35,11 @@ const gameBoard = (() => {
 
 
 const game = (() => {
+    let player = undefined;
     let turnCount = 0;
     const boardClick = (e) => {
-        console.log(e.target.id);
-        if (e.target.innerHTML == "") {
+/*         console.log(e.target.id);
+ */        if (e.target.innerHTML == "") {
             playTurn(e.target.id)
         }
         else {
@@ -65,12 +65,42 @@ const game = (() => {
         }
         turnCount += 1;
         gameBoard.update(tileID, player.symbol)
-                //gameBoard.update(tile, Player.symbol?)
+        console.log(gameBoard.getGameBoard());
+        displayController.fillSquare(player.symbol, tileID)
+        if (turnCount > 4 ) {
+            let didWin = checkWin(gameBoard.getGameBoard())
+            console.log(didWin);
+            
+            if (didWin) {
+                console.log("winner!");
+                
+            }
+            if (!didWin && turnCount == 9) {
+                //tie game
+            }
+        }
     }
-    const isGameOver = () => {
+    const checkWin = (gameboard) => {
+        //check horizontal win
+        for (let i = 0; i < 7; i=i+3) {
+           if (gameboard[i] != 0 && (gameboard[i] == gameboard[i+1] && gameboard[i] == gameboard[i+2])) {     
+            return true;
+           }
+        }
+        //check vertical win
+        for (let i = 0; i < 3; i++) {
+            if (gameboard[i] != 0 && (gameboard[i] == gameboard[i+3] && gameboard[i] == gameboard[i+6])) {
+                return true;
+            }             
+        }
+        //diagonals
+        if ((gameboard[0] == gameboard[4] && gameboard[0] == gameboard[8]) || (gameboard[2] == gameboard[4] && gameboard[2] == gameboard[6])) {
+            return true;
+        }
+    }
 
-    }
     return {
+        turnCount,
         boardClick,
         reset,
     }
@@ -89,7 +119,8 @@ const displayController = (() => {
         }
     }
     const fillSquare = (playerSymbol, tile) => {
-
+        const container = document.querySelector(`#${tile}`)
+        container.textContent = playerSymbol;
     }
     const displayWin = (playerWinner) => {
 
@@ -98,7 +129,8 @@ const displayController = (() => {
 
     }
     return {
-        initBoard
+        initBoard,
+        fillSquare
     }
 })()
 game.reset();
